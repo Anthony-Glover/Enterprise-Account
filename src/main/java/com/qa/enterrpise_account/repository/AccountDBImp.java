@@ -1,8 +1,8 @@
 package com.qa.enterrpise_account.repository;
 
-import java.util.List;
+import java.util.Collection;
 
-import javax.ejb.TransactionAttributeType;
+import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -13,7 +13,8 @@ import javax.transaction.Transactional.TxType;
 import com.google.gson.Gson;
 import com.qa.app.Account;
 
-public class AccountDBImp 
+@Default
+public class AccountDBImp implements IService 
 {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
@@ -56,7 +57,7 @@ public class AccountDBImp
 	}
 
 	@Transactional(TxType.REQUIRED)
-	public List<Account> findAllAccounts() 
+	public Collection<Account> findAllAccounts() 
 	{
 		TypedQuery<Account> query = manager.createQuery("SELECT a FROM Account a ORDER BY a.id", Account.class);
         return query.getResultList();

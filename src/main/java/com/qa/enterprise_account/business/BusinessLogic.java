@@ -10,13 +10,10 @@ import com.qa.enterrpise_account.repository.IService;
 public class BusinessLogic 
 {
 	@Inject
-	IService service;
+	private IService service;
 	
-	public String createAccount(String accountInJSON)
+	public String createAccount(Account account)
 	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);
-		
 		if (9999 == account.getAccountNumber())
 		{
 			return "{'message': 'This account is blocked'}";
@@ -25,26 +22,19 @@ public class BusinessLogic
 			return service.createAccount(account);
 	}
 	
-	public String deleteAccount(String accountInJSON) 
+	public String deleteAccount(Account account) 
 	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);		
 		return service.deleteAccount(account);
 	}
 
-	public String updateAccount(String accountInJSON) 
+	public String updateAccount(Account account) 
 	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);		
 		return service.updateAccount(account);
 	}
 
-	public Account findAccount(String accountInJSON) 
+	public Account findAccount(Account account) 
 	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);					
-		account = service.findAccount(account);
-		return account;
+		return service.findAccount(account);
 	}
 
 	public Collection<Account> findAllAccounts() 

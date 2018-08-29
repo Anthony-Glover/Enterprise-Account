@@ -33,9 +33,10 @@ public class AccountDBImp implements IService
 	}
 
 	@Transactional(TxType.REQUIRES_NEW)
-	public String updateAccount(Account account) 
+	public String updateAccount(Account accountUpdate) 
 	{
-		manager.refresh(account);
+		Account account = manager.find(Account.class, accountUpdate.getId());
+		account = accountUpdate;
 		return "{\"message\": \"account sucessfully updated\"}";
 	}
 

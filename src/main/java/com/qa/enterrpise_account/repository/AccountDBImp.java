@@ -46,6 +46,7 @@ public class AccountDBImp
 		return "{\"message\": \"account sucessfully updated\"}";
 	}
 
+	@Transactional(TxType.REQUIRED)
 	public Account findAccount(String accountInJSON) 
 	{
 		Gson gson = new Gson();
@@ -54,6 +55,7 @@ public class AccountDBImp
 		return account;
 	}
 
+	@Transactional(TxType.REQUIRED)
 	public List<Account> findAllAccounts() 
 	{
 		TypedQuery<Account> query = manager.createQuery("SELECT a FROM Account a ORDER BY a.id", Account.class);

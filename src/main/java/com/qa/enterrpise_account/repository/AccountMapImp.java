@@ -16,34 +16,26 @@ public class AccountMapImp implements IService {
 
 	private Map<Integer, Account> map = new HashMap<Integer, Account>();
 	
-	public String createAccount(String accountInJSON) 
+	public String createAccount(Account account) 
 	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);
 		map.put(account.getId(), account);
 		return "{\"message\": \"account sucessfully added\"}";
 	}
 
-	public String deleteAccount(String accountInJSON) 
+	public String deleteAccount(Account account) 
 	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);
 		map.remove(account.getId());
 		return "{\"message\": \"account sucessfully removed\"}";
 	}
 
-	public String updateAccount(String accountInJSON) 
-	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);		
+	public String updateAccount(Account account) 
+	{		
 		map.replace(account.getId(), account);
 		return "{\"message\": \"account sucessfully updated\"}";
 	}
 
-	public Account findAccount(String accountInJSON) 
-	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);					
+	public Account findAccount(Account account) 
+	{					
 		account = map.get(account.getId());
 		return account;
 	}

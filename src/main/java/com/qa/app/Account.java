@@ -5,6 +5,14 @@ import javax.persistence.*;
 @Entity
 public class Account 
 {
+	public Integer getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(Integer accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
 	public Integer getId() {
 		return id;
 	}

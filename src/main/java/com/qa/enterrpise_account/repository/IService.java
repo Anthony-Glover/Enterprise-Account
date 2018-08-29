@@ -6,9 +6,9 @@ import com.qa.app.Account;
 
 public interface IService 
 {
-	public String createAccount(String accountInJSON);
-	public String deleteAccount(String accountInJSON);
-	public String updateAccount(String accountInJSON);
-	public Account findAccount(String accountInJSON);
+	public String createAccount(Account account);
+	public String deleteAccount(Account account);
+	public String updateAccount(Account account);
+	public Account findAccount(Account account);
 	public Collection<Account> findAllAccounts();
 }

@@ -10,7 +10,6 @@ import javax.persistence.TypedQuery;
 import javax.transaction.*;
 import javax.transaction.Transactional.TxType;
 
-import com.google.gson.Gson;
 import com.qa.app.Account;
 
 @Default
@@ -20,38 +19,29 @@ public class AccountDBImp implements IService
 	private EntityManager manager;
 	
 	@Transactional(TxType.REQUIRES_NEW)
-	public String createAccount(String accountInJSON) 
+	public String createAccount(Account account) 
 	{
-		 
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);		
 		manager.persist(account);
 		return "{\"message\": \"account sucessfully added\"}";
 	}
 
 	@Transactional(TxType.REQUIRES_NEW)
-	public String deleteAccount(String accountInJSON) 
+	public String deleteAccount(Account account) 
 	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);		
 		manager.remove(account);
 		return "{\"message\": \"account sucessfully deleted\"}";
 	}
 
 	@Transactional(TxType.REQUIRES_NEW)
-	public String updateAccount(String accountInJSON) 
+	public String updateAccount(Account account) 
 	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);		
 		manager.refresh(account);
 		return "{\"message\": \"account sucessfully updated\"}";
 	}
 
 	@Transactional(TxType.REQUIRED)
-	public Account findAccount(String accountInJSON) 
+	public Account findAccount(Account account) 
 	{
-		Gson gson = new Gson();
-		Account account = gson.fromJson(accountInJSON, Account.class);					
 		account = manager.find(Account.class, account.getId());
 		return account;
 	}
